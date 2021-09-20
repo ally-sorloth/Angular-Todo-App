@@ -25,7 +25,7 @@ export class CartSummaryComponent implements OnInit {
 
   removeFromCart(todo:Todo){
     this.cartService.removeFromCart(todo);
-    this.toastrService.error(todo.title, "sepetten silindi.")
+    this.toastrService.error(todo.title, "iş listesinden silindi.")
 
   }
 }

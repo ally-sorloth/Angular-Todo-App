@@ -29,7 +29,7 @@ export class TodoComponent implements OnInit {
   }
 
   addToCart(todo:Todo){
-    this.toastrService.success("Sepete eklendi",todo.title)
+    this.toastrService.success("İş Listesine eklendi",todo.title)
     this.cartService.addToCart(todo);
   }
 }

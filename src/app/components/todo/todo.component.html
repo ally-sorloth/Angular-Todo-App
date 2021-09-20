@@ -1,0 +1,32 @@
+<div class="mb-3">
+    <label for="filterText" class="form-label">İş ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="arama ifadesi giriniz">
+  </div>
+  <div *ngIf="filterText" class="alert alert-success">
+    {{filterText}} aradınız 
+  </div>
+
+<table class="table">
+    <thead class="table">
+        <tr>
+            <th>User Id</th>
+            <th>ID</th>
+            <th>İş</th>
+            <th>İşlemde</th>
+            <th>Tamam</th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todos | filterPipe:filterText">
+            <td>{{todo.userId}}</td>
+            <td>{{todo.id}}</td>
+            <td>{{todo.title | uppercase}}</td>
+            <td>{{todo.completed |vatAdded:false }}</td>
+            <td>{{todo.completed}}</td>
+            <td><button (click)="addToCart(todo)" type="button" class="btn btn-success btn-sm">Sepete Ekle</button></td>
+        </tr>
+    </tbody>
+    
+</table>

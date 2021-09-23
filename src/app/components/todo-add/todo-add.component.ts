@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-add',
@@ -9,7 +11,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class TodoAddComponent implements OnInit {
 
   todoAddForm : FormGroup;
-  constructor(private formBuilder:FormBuilder) { }
+  constructor(private formBuilder:FormBuilder,
+    private todoService:TodoService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +26,18 @@ export class TodoAddComponent implements OnInit {
       
 
     })
+  }
+
+  add(){
+
+    if(this.todoAddForm.valid){
+      let todoModel = Object.assign({}, this.todoAddForm.value)
+      this.todoService.add(todoModel)
+      this.toastrService.success("İş eklendi", "Başarılı")
+    }else{
+      this.toastrService.error("Formunuz eksik", "Dikkat")
+
+    }
   }
 
 }
